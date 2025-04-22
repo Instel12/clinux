@@ -4,7 +4,22 @@ set -e
 
 # Update and install required packages
 sudo apt update
-sudo apt install -y firefox xfce4 xfce4-goodies tightvncserver git wget
+#!/bin/sh
+clear
+echo ⭐ Welcome to the Clinux setup! ⭐
+echo "❓ Would you like to install Firefox? (y/n) ❓"
+read answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    sudo apt install -y firefox xfce4 xfce4-goodies tightvncserver git wget
+fi
+clear
+echo "❓ Would you like to install 7-zip? (y/n) ❓"
+read answer
+if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    sudo apt install -y p7zip-full
+fi
+
+
 
 # Set up VNC server
 vncserver :1
@@ -34,3 +49,5 @@ vncserver :1
 
 # Start noVNC on port 6080
 "$NOVNC_DIR"/utils/novnc_proxy --vnc localhost:5901 --listen 6080 &
+clear
+echo ⭐ Finished! You may now kill this terminal. ⭐
